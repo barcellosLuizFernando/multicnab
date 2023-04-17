@@ -1,5 +1,5 @@
 {
-    "name": "barcellosLuizFernando/multicnab",
+    "name": "barcellosluizfernando/multicnab",
     "type": "library",
     "description": "Biblioteca PHP para leitura de arquivos layout Febraban CNAB240",
     "keywords": ["boleto", "remessa", "retorno", "cnabphp", "cnab240", "cnab400"],
