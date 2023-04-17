@@ -23,7 +23,7 @@ class ReadFile
 
         $this->layout = $this->getLayout($file[0]);
         $this->setContent($file);
-        echo  json_encode($this->content);
+        #echo  json_encode($this->content);
     }
 
     private function setContent(array $lines)
