@@ -1,8 +1,8 @@
 <?php
 
-namespace Multicnab\Layouts;
+namespace Multicnab\Cobranca\Layouts;
 
-class CnabPHP_v040
+class CnabPHP_v040 implements CnabPHP
 {
     //Properties
     private $header = [];
@@ -30,8 +30,8 @@ class CnabPHP_v040
         $this->setLayout("cobHeader",  'CNAB', 'Uso exclusivo FEBRABAN/CNAB', 13, 2, 'alfa');
         $this->setLayout("cobHeader", 'Layout', 'Nº da versão do layout do lote', 16, 3, 'num');
         $this->setLayout("cobHeader", 'CNAB', 'Uso exclusivo FEBRABAN/CNAB', 17, 1, 'num');
-        $this->setLayout("cobHeader", 'Inscrição - Tipo', 'Tipo de inscrição da Empresa', 18, 1, 'num');
-        $this->setLayout("cobHeader", 'Inscrição - Número', 'Número de inscrição da Empresa', 33, 15, 'num');
+        $this->setLayout("cobHeader", 'Inscrição - tipo', 'Tipo de inscrição da Empresa', 18, 1, 'num');
+        $this->setLayout("cobHeader", 'Inscrição - número', 'Número de inscrição da Empresa', 33, 15, 'num');
         $this->setLayout("cobHeader", 'Convênio', 'Código do convênio do Banco', 42, 9, 'alfa');
         $this->setLayout("cobHeader", 'Reservado (uso Banco)', 'Reservado', 53, 11, 'alfa');
         $this->setLayout("cobHeader", 'Agência - Código', 'Agência mantenedora da conta', 57, 4, 'num');
@@ -179,18 +179,18 @@ class CnabPHP_v040
         array_push($this->$variable, $arr);
     }
 
-    public function getHeader()
+    public function getHeader(): array
     {
         return $this->header;
     }
 
-    public function getCobTrailer()
+    public function getCobTrailer(): array
     {
         # code...
         return $this->cobTrailer;
     }
 
-    public function getTrailer()
+    public function getTrailer(): array
     {
         # code...
         return $this->trailer;

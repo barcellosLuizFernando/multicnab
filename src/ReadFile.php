@@ -2,11 +2,8 @@
 
 namespace Multicnab;
 
-use Multicnab\Layouts\CnabPHP_v040;
-use Multicnab\Layouts\CnabPHP_v103;
-
-#include "Layouts/CnabPHP_v103.php";
-#include "Layouts/CnabPHP_v040.php";
+use Multicnab\Cobranca\Layouts\CnabPHP_v040;
+use Multicnab\Cobranca\Layouts\CnabPHP_v103;
 
 class ReadFile
 {
@@ -119,7 +116,7 @@ class ReadFile
         return $arrLine;
     }
 
-    public function getContent()
+    public function getContent(): array
     {
         # code...
         return $this->content;
@@ -179,5 +176,3 @@ class ReadFile
         return $cnabLayout;
     }
 }
-
-#$aa = new ReadFile("D:/Downloads/COBST_SUEF_02_110423P_MOV 11.TXT");

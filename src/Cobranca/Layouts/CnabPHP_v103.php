@@ -1,8 +1,8 @@
 <?php
 
-namespace Multicnab\Layouts;
+namespace Multicnab\Cobranca\Layouts;
 
-class CnabPHP_v103
+class CnabPHP_v103 implements CnabPHP
 {
     //Properties
     private $header = [];
@@ -10,6 +10,7 @@ class CnabPHP_v103
     private $cobSegmentoT = [];
     private $cobSegmentoU = [];
     private $cobTrailer = [];
+    private $trailer = [];
 
     public function __construct()
     {
@@ -274,6 +275,15 @@ class CnabPHP_v103
         $this->setLayout("header", ["Reservado banco", "Para uso reservado do banco", 191, 20, "alfa"]);
         $this->setLayout("header", ["Reservado empresa", "Para uso reservado da empresa", 211, 20, "alfa"]);
         $this->setLayout("header", ["CNAB", "Uso exclusivo FEBRABAN/ CNAB", 240, 29, "alfa", ' ']);
+
+        $this->setLayout("trailer", ["Banco", "Código do banco na compensação", 3, 3, "num"]);
+        $this->setLayout("trailer", ["Lote", "Lote de serviço", 7, 4, "num", '9']);
+        $this->setLayout("trailer", ["Registro", "Tipo de registro", 8, 1, "num", '9']);
+        $this->setLayout("trailer", ["CNAB", "Uso exclusivo FEBRABAN/CNAB", 17, 9, "alfa", ' ']);
+        $this->setLayout("trailer", ["Qtde. de Lotes", "Quantidade de lotes do arquivo", 23, 6, "num"]);
+        $this->setLayout("trailer", ["Qtde. de Registros", "Quantidade de registros do arquivo", 29, 6, "num"]);
+        $this->setLayout("trailer", ["Qtde. de contas", "Quantidade de contas para conciliação", 35, 6, "num"]);
+        $this->setLayout("trailer", ["CNAB", "Uso exclusivo FEBRABAN / CNAB", 240, 205, "alfa", " "]);
     }
 
     private function setLayout(string $variable, array $data): void
@@ -297,12 +307,17 @@ class CnabPHP_v103
         array_push($this->$variable, $arr);
     }
 
-    public function getHeader()
+    public function getTrailer(): array
+    {
+        return $this->trailer;   
+    }
+
+    public function getHeader(): array
     {
         return $this->header;
     }
 
-    public function getCobTrailer()
+    public function getCobTrailer(): array
     {
         # code...
         return $this->cobTrailer;
