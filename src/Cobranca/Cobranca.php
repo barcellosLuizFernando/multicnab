@@ -2,6 +2,7 @@
 
 namespace Multicnab\Cobranca;
 
+use ArrayAccess;
 use DateTimeImmutable;
 use Multicnab\Cobranca\Header as CobrancaHeader;
 use Multicnab\Cobranca\Segmentos\Segmento_t;
@@ -11,8 +12,9 @@ use Multicnab\Header;
 use Multicnab\ReadFile;
 use Multicnab\Trailer;
 use PhpParser\Node\Expr\Cast\Double;
+use stdClass;
 
-class Cobranca
+class Cobranca extends stdClass implements ArrayAccess
 {
 
     public Header $fileheader;
@@ -23,7 +25,6 @@ class Cobranca
 
     public function __construct(string $file_path = null)
     {
-
 
         $this->fileheader = new Header();
         $this->loteheader = new CobrancaHeader();
@@ -38,6 +39,27 @@ class Cobranca
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function offsetExists(mixed $offset): bool
+    {
+     
+        return true;
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        
     }
 
     public function getAll()
