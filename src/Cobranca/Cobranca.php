@@ -2,8 +2,11 @@
 
 namespace Multicnab\Cobranca;
 
-use ArrayAccess;
+use ArrayIterator;
+use Countable;
 use DateTimeImmutable;
+use IteratorAggregate;
+use JsonSerializable;
 use Multicnab\Cobranca\Header as CobrancaHeader;
 use Multicnab\Cobranca\Segmentos\Segmento_t;
 use Multicnab\Cobranca\Segmentos\Segmento_u;
@@ -13,8 +16,9 @@ use Multicnab\ReadFile;
 use Multicnab\Trailer;
 use PhpParser\Node\Expr\Cast\Double;
 use stdClass;
+use Traversable;
 
-class Cobranca extends stdClass implements ArrayAccess
+class Cobranca implements Countable, IteratorAggregate, JsonSerializable
 {
 
     public Header $fileheader;
@@ -41,25 +45,20 @@ class Cobranca extends stdClass implements ArrayAccess
         }
     }
 
-    public function offsetExists(mixed $offset): bool
+    public function jsonSerialize(): mixed
     {
-     
-        return true;
+        return json_decode(json_encode($this));
     }
 
-    public function offsetGet(mixed $offset): mixed
+    public function count(): int
     {
-        
+        # code...
+        return 1;
     }
 
-    public function offsetUnset(mixed $offset): void
+    public function getIterator(): Traversable
     {
-        
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        
+        return new ArrayIterator($this);
     }
 
     public function getAll()
