@@ -12,13 +12,13 @@ use Multicnab\Cobranca\Segmentos\Segmento_t;
 use Multicnab\Cobranca\Segmentos\Segmento_u;
 use Multicnab\Cobranca\Trailer as CobrancaTrailer;
 use Multicnab\Header;
+use Multicnab\Movimentos;
 use Multicnab\ReadFile;
 use Multicnab\Trailer;
 use PhpParser\Node\Expr\Cast\Double;
-use stdClass;
 use Traversable;
 
-class Cobranca implements Countable, IteratorAggregate, JsonSerializable
+class Cobranca #implements JsonSerializable # Countable, IteratorAggregate, 
 {
 
     public Header $fileheader;
@@ -37,7 +37,6 @@ class Cobranca implements Countable, IteratorAggregate, JsonSerializable
         $this->filetrailer = new Trailer();
 
         #echo json_encode($this);
-
         try {
             $this->readfile($file_path);
         } catch (\Throwable $th) {
@@ -58,6 +57,7 @@ class Cobranca implements Countable, IteratorAggregate, JsonSerializable
 
     public function getIterator(): Traversable
     {
+        
         return new ArrayIterator($this);
     }
 
@@ -372,6 +372,7 @@ class Cobranca implements Countable, IteratorAggregate, JsonSerializable
                     case 'Cod. Mov.':
                         # code...
                         $segmento_t->cod_movimento = $value;
+                        $segmento_t->movimentos = new Movimentos($this->fileheader->cod_rem_ret, $value);
                         break;
                     case 'Agência - código':
                         # code...

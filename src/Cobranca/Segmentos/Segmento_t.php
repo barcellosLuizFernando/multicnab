@@ -2,6 +2,8 @@
 
     namespace Multicnab\Cobranca\Segmentos;
 
+use Multicnab\Movimentos;
+
 class Segmento_t {
 
 
@@ -35,6 +37,7 @@ class Segmento_t {
     public $motivo_ocorrencia;
     public $cnab02;
     public Segmento_u $segmento_u;
+    public Movimentos $movimentos;
 
     public function __construct()
     {
